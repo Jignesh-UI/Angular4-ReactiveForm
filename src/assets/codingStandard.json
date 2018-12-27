@@ -1,0 +1,166 @@
+{
+	"codingStandard": [{
+			"Identifier": "Namespace",
+			"Case": "Pascal",
+			"Example": [
+				"System.Drawing",
+				"AppliedIS.TimeCard.BusinessRules",
+				"IrritatedVowel.Controllers",
+				"PeteBrown.DotNetTraining.InheritanceDemo PeteBrown.DotNetTraining.Xml"
+			]
+		}, {
+			"Identifier": "Assemblies",
+			"Case": "Pascal",
+			"Example": [
+				"AppliedIS.TimeCard.BusinessRules.dll",
+				"IrritatedVowel.Controllers.dll"
+			]
+		},
+		{
+			"Identifier": "Class",
+			"Case": "Pascal",
+			"Example": [
+				"AppDomain",
+				"MyClass",
+				"ProjectManager",
+				"InvoiceDetails",
+				"XmlDocument"
+
+			]
+		},
+		{
+			"Identifier": "Interface",
+			"Case": "Pascal",
+			"Example": [
+				"IDisposable",
+				"IErrorControl",
+				"IControlMessage"
+			]
+		},
+		{
+			"Identifier": "Struct",
+			"Case": "Pascal",
+			"Example": [
+				"Point",
+				"Rectangle",
+				"VectorList"
+			]
+		},
+		{
+			"Identifier": "Collection Classes",
+			"Case": "Pascal",
+			"Example": [
+				"WidgetCollection",
+				"InvoiceCollection"
+			]
+		},
+		{
+			"Identifier": "Delegate Classes",
+			"Case": "Pascal",
+			"Example": [
+				"WidgetCallbackDelegate",
+				"ProjectCallbackDelegate"
+			]
+		},
+		{
+			"Identifier": "Exception Classes",
+			"Case": "Pascal",
+			"Example": [
+				"InvalidTransactionException",
+				"InvalidAssingmentException"
+			]
+		},
+		{
+			"Identifier": "Attribute Classes",
+			"Case": "Pascal",
+			"Example": [
+				"WebServiceAttribute",
+				"Transaction.IsolationLevelAttribute"
+			]
+		},
+		{
+			"Identifier": "Enumeration",
+			"Case": "Pascal",
+			"Example": [
+				"AcceptRejectRule (normal enum)",
+				"SearchOptions (bitwise flags)"
+			]
+		},
+		{
+			"Identifier": "Enum type & Enum values",
+			"Case": "Pascal",
+			"Example": [
+				"ErrorLevel & FatalError"
+			]
+		},
+		{
+			"Identifier": "Functions or Methods",
+			"Case": "Pascal",
+			"Example": [
+				"public void DoSomething(…)",
+				"protected override int ReturnInvoiceNumber(…)",
+				"public string ToString(…)"
+			]
+		},
+		{
+			"Identifier": "Event",
+			"Case": "Pascal",
+			"Example": [
+				"ValueChange"
+			]
+		},
+		{
+			"Identifier": "Private member variables(class)",
+			"Case": "Camel with underscore",
+			"Example": [
+				"_projectName",
+				"_invoiceId"
+			]
+		},
+		{
+			"Identifier": "Protected member variables(class)",
+			"Case": "Camel",
+			"Example": [
+				"projectName",
+				"invoiceID"
+			]
+		},
+		{
+			"Identifier": "Public member variables(class)",
+			"Case": "Camel",
+			"Example": [
+				"projectName",
+				"invoiceID"
+			]
+		},
+		{
+			"Identifier": "Properties",
+			"Case": "Pascal",
+			"Example": [
+				"RedValue"
+			]
+		},
+		{
+			"Identifier": "Private Constants and static fields",
+			"Case": "Camel with underscore",
+			"Example": [
+				"_constTotal",
+				"_machineKey"
+			]
+		},
+		{
+			"Identifier": "Function Parameter",
+			"Case": "Camel",
+			"Example": [
+				"typeName"
+			]
+		},
+		{
+			"Identifier": "Local Function variables",
+			"Case": "Camel",
+			"Example": [
+				"backColor"
+			]
+		}
+	]
+}

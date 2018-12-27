@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+.pageTitle {
+  font-size: 18px;
+}
+
+.panel-body {
+  .alert {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .form-group {
+    .control-label {
+      &.has-error {
+        &:after {
+          content: "*";
+          color: red;
+        }
+      }
+    }
+
+    .checkbox {
+      :first-child {
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+.form-horizontal {
+  .control-label {
+    text-align: left;
+  }
+}
+
+.navbar-nav {
+  li.active, li:hover {
+    background-color: #eee;
+    text-decoration: none;
+    border-radius: 5px 5px 0 0;
+    -webkit-box-shadow:0 0px 4px 0 #333;
+    box-shadow:0 0px 4px 0 #333;
+  }
+}
