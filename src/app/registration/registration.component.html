@@ -1,0 +1,193 @@
+<form [formGroup]="registrationForm" class="col-md-10 col-md-offset-1 form-horizontal">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Registeration</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="txtfname" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.firstName}">First
+          Name</label>
+        <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.firstName}">
+          <input type="text" id="txtfname" class="form-control" formControlName="firstName" placeholder="First Name"
+            (blur)="logValidationErrors()" />
+        </div>
+        <label for="txtlname" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.lastName}">Last Name</label>
+        <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.lastName}">
+          <input type="text" id="txtlname" class="form-control" formControlName="lastName" placeholder="Last Name"
+            (blur)="logValidationErrors()" />
+        </div>
+      </div>
+
+      <div formArrayName="contactDetails">
+        <div formGroupName="0">
+          <div class="form-group">
+            <p class="alert alert-info col-md-12">Phone & Email Details</p>
+
+            <label for="txtmobileNo" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.mobileNo}">Mobile</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.mobileNo}">
+              <input type="text" id="txtmobileNo" formControlName="mobileNo" placeholder="Mobile Number" class="form-control"
+                (blur)="logValidationErrors()" />
+            </div>
+
+            <label for="txtphoneNo" class="col-sm-2 control-label">Phone</label>
+            <div class="col-sm-4">
+              <input type="text" id="txtphoneNo" formControlName="phoneNo" placeholder="Phone Number" class="form-control"
+                (blur)="logValidationErrors()" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="txtemail" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.email}">Email</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.email}">
+              <input type="text" id="txtemail" (keyup)="defaultUserName($event)" formControlName="email" placeholder="Email"
+                class="form-control" (blur)="logValidationErrors()" />
+              <!-- [(ngModel)]="example.email" -->
+            </div>
+            <label for="txtwebsite" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.website}">Web
+              Site</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.website}">
+              <input type="text" id="txtwebsite" formControlName="website" placeholder="Web Site" class="form-control"
+                (blur)="logValidationErrors()" />
+              <span class="help-block" *ngIf="formErrors.website">
+                {{ formErrors.website }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div formArrayName="addressDetails">
+        <div formGroupName="0">
+          <div class="form-group">
+            <p class="alert alert-info col-md-12">Permanent Address Details</p>
+
+            <label for="txtaddress" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.address}">Address</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.address}">
+              <input type="text" id="txtaddress" formControlName="address" placeholder="Address" class="form-control"
+                (blur)="logValidationErrors()" />
+            </div>
+
+            <label for="txtstreetAddress" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.streetAddress}">Street
+              Address</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.streetAddress}">
+              <input type="text" id="txtstreetAddress" formControlName="streetAddress" placeholder="Street Address"
+                class="form-control" (blur)="logValidationErrors()" />
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="txtcity" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.city}">City</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.city}">
+              <input type="text" id="txtcity" formControlName="city" placeholder="City" class="form-control" (blur)="logValidationErrors()" />
+            </div>
+
+            <label for="txtstate" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.state}">State</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.state}">
+              <input type="text" id="txtstate" formControlName="state" placeholder="State" class="form-control" (blur)="logValidationErrors()" />
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="txtpinCode" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.pinCode}">Pip
+              Code</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.pinCode}">
+              <input type="text" id="txtpinCode" formControlName="pinCode" placeholder="Pin Code" class="form-control"
+                (blur)="logValidationErrors()" />
+            </div>
+
+            <label for="txtcountry" class="col-sm-2 control-label">Country</label>
+            <div class="col-sm-4">
+              <input type="text" id="txtcountry" formControlName="country" placeholder="Country" class="form-control"
+                (blur)="logValidationErrors()" />
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row alert alert-info">
+        <div class="col-sm-10"> Skill Related Details</div>
+        <div class="col-sm-2">
+          <a href="javascript:;" (click)="addNewSkillsControls()"
+          *ngIf="!registrationForm.get('skills').invalid"
+
+          > <span class="glyphicon glyphicon-plus"> </span> Add New Skills </a>
+        </div>
+      </div>
+      <div formArrayName="skills" *ngFor="let skill of registrationForm.get('skills').controls; let i = index;">
+        <hr *ngIf="i>0" >
+        <div [formGroupName]="i">
+          <div class="form-group">
+            <label [attr.for]="'txtskillName'+i" class="col-sm-2 control-label" [ngClass]="{'has-error' :
+                skill.controls.skillName.invalid && skill.get('skillName').touched}">Skill</label>
+            <div class="col-sm-4" [ngClass]="{'has-error' :
+                  skill.controls.skillName.invalid && skill.get('skillName').touched }">
+              <input type="text" [id]="'txtskillName'+i" formControlName="skillName" placeholder="Skills" class="form-control"
+                (blur)="logValidationErrors()" />
+            </div>
+
+            <label for="txtskillName" class="col-sm-2 control-label">Experience In Years</label>
+            <div class="col-sm-4">
+              <input type="text" id="txtexperienceInYears" formControlName="experienceInYears" placeholder="Experience Year"
+                class="form-control" (blur)="logValidationErrors()" />
+            </div>
+          </div>
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="form-group" [ngClass]="{'has-error' :
+                  skill.get('proficiency').invalid && skill.get('proficiency').touched }">
+              <div class="checkbox">
+                <label> <input type="radio" formControlName="proficiency" value="Begineer"> Begineer </label>
+                <label> <input type="radio" formControlName="proficiency" value="Intermediate"> Intermediate </label>
+                <label> <input type="radio" formControlName="proficiency" value="Advanced"> Advanced </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <p class="alert alert-info col-md-12">User Name for Login</p>
+
+        <label class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.userName}">User Name </label>
+        <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.userName}">
+          <input type="text" id="txtuserName" formControlName="userName" placeholder="User Name" class="form-control"
+            (blur)="logValidationErrors()" />
+          <!-- [(ngModel)]="example.email" -->
+        </div>
+
+      </div>
+      <div formGroupName="loginDetails">
+        <div class="form-group">
+
+          <label class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.password || formErrors.loginDetails}">Password
+          </label>
+          <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.password || formErrors.loginDetails}">
+            <input type="text" id="txtpassword" formControlName="password" placeholder="Password" class="form-control"
+              (blur)="logValidationErrors()" />
+          </div>
+
+          <label class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.confirmPassword || formErrors.loginDetails}">Confirm
+            Password </label>
+          <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.confirmPassword || formErrors.loginDetails}">
+            <input type="text" id="txtconfirmPassword" formControlName="confirmPassword" placeholder="Confirm Password"
+              class="form-control" (blur)="logValidationErrors()" />
+            <span class="help-block" *ngIf="formErrors.confirmPassword || formErrors.loginDetails">
+              {{ formErrors.confirmPassword ? formErrors.confirmPassword : formErrors.loginDetails }}
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="panel-footer">
+      <input type="submit" class="btn btn-primary" value="Save" (click)="submitMethod()">
+      <input type="button" class="btn btn-primary" value="Reset" (click)="resetForm()">
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,29 @@
+<form [formGroup]="loginForm" class="col-md-10 col-md-offset-1 form-horizontal">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Credentials</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label for="userName" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.userName}">User Name</label>
+          <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.userName}">
+            <input type="text" id="userName" class="form-control" formControlName="userName" placeholder="First Name" (blur)="logValidationErrors()" />
+            <span class="help-block" *ngIf="formErrors.userName"> {{formErrors.userName}} </span>
+          </div>
+
+          <label for="password" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.password}">Password</label>
+          <div class="col-sm-4" [ngClass]="{'has-error' : formErrors.password}">
+            <input type="text" id="password" class="form-control" formControlName="password" placeholder="Last Name" (blur)="logValidationErrors(loginForm)" />
+            <span class="help-block" *ngIf="formErrors.password"> {{formErrors.password}} </span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <input type="button" class="btn btn-primary" value="Save" (click)="submitMethod()">
+        <input type="button" class="btn btn-primary" value="Reset" (click)="onLoadDataClick()">
+      </div>
+    </div>
+
+  </form>

@@ -1,0 +1,10 @@
+a{
+  &.disabled{
+    pointer-events:none;
+    cursor: default;
+  }
+}
+
+hr{
+  border: 1px solid #d9edf7;
+}

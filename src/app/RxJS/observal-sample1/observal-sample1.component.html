@@ -1,0 +1,40 @@
+<h2>Class Method</h2>
+<pre>
+  numbers = [2, 5, 6, 10];
+  source = Observable.from(this.numbers);
+
+  ngOnInit() &#123;
+    this.source.subscribe(new MyObserver);
+  &#125;
+
+class MyObserver &#123;
+  next(value) &#123;
+    console.log(`value: $&#123;value&#125;`);
+  &#125;
+  error(e) &#123;
+    console.log(`error: $&#123;e&#125;`);
+  &#125;
+  complete() &#123;
+    console.log('Completed');
+  &#125;
+&#125;
+
+</pre>
+
+
+<h2>Shortcut Method</h2>
+
+<pre>
+  numbers = [2, 5, 6, 10];
+  source = Observable.from(this.numbers);
+  ngOnInit() &#123;
+    this.source.subscribe(
+      value => &#123;
+        console.log('Shortcut method to display observalble string/numbers');
+        console.log(value);
+      &#125;,
+      e => &#123; console.log('error'); &#125;,
+      () => &#123; console.log('complete'); &#125;
+    );
+  &#125;
+</pre>

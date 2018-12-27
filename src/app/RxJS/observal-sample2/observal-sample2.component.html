@@ -1,0 +1,20 @@
+<pre>
+  numbers = [2, 3, 4];
+  source = Observable.create(observer => &#123;
+    for (const n of this.numbers) &#123;
+      if (n === 3) &#123;
+        observer.error('Something went wrong!!!');
+      &#125;
+      observer.next(n);
+    &#125;
+    observer.complete();
+  &#125;);
+</pre>
+
+<pre>
+  this.source.subscribe(
+      value => console.log(`value: $&#123;value&#125;`),
+      e => console.log(`error: $&#123;e&#125;`),
+      () => console.log(`Completed`)
+    );
+</pre>

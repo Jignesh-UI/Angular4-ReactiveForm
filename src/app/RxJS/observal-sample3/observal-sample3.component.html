@@ -1,0 +1,29 @@
+
+
+<pre>
+  numbers = [2, 3, 4];
+  source = Observable.create(observer => &#123;
+    let index = 0;
+    const produceValue = () => &#123;
+      observer.next(this.numbers[index++]);
+      if (index < this.numbers.length) &#123;
+        setTimeout(produceValue, 2000);
+      &#125; else &#123;
+        observer.complete();
+      &#125;
+    &#125;;
+    produceValue();
+  &#125;);
+</pre>
+
+
+<pre>
+  ngOnInit() &#123;
+    this.source.subscribe(
+      value => console.log(`value: $&#123;value&#125;`),
+      e => console.log(`error: $&#123;e&#125;`),
+      () => console.log(`Completed`)
+    );
+  &#125;
+
+</pre>
