@@ -1,0 +1,104 @@
+<div class="col-sm-12">
+
+  <div class="form-group">
+    <input type="button" class="btn btn-primary" value="{{showFormButtonText}}" (click)="showAddForm()">
+  </div>
+
+
+  <form class="form-horizontal" [formGroup]="taskForm">
+    <div class="panel panel-primary" *ngIf="showForm">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter New User Details</h3>
+      </div>
+
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label for="taskNumber" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.taskNumber}">Task
+            Number </label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.taskNumber}">
+            <input type="text" id="taskNumber" class="form-control" formControlName="taskNumber" placeholder="Task Number" />
+            <span class="help-block" *ngIf="formErrors.taskNumber"> {{formErrors.taskNumber}} </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pbiId" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.pbiId}">PBI Number</label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.pbiId}">
+            <select name="pbiId" id="pbiId" class="form-control" formControlName="pbiId">
+              <option *ngFor="let item of pbiList" value="{{item.id}}"> {{item.pbiNumber}} </option>
+            </select>
+            <span class="help-block" *ngIf="formErrors.pbiId"> {{formErrors.pbiId}} </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="issueId" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.issueId}">Issue
+            Number</label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.issueId}">
+            <select name="issueId" id="issueId" class="form-control" formControlName="issueId">
+              <option *ngFor="let item of issuesList" value="{{item.id}}"> {{item.issueNumber}} </option>
+            </select>
+            <span class="help-block" *ngIf="formErrors.issueId"> {{formErrors.issueId}} </span>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="taskDescription" class="col-sm-2 control-label" [ngClass]="{'has-error': formErrors.taskDescription}">Task
+            Description</label>
+          <div class="col-sm-10" [ngClass]="{'has-error': formErrors.taskDescription}">
+            <textarea id="taskDescription" class="form-control" formControlName="taskDescription" placeholder="Enter Task Description here......"> </textarea>
+            <span class="help-block" *ngIf="formErrors.taskDescription"> {{formErrors.taskDescription}} </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-footer">
+        <input type="button" class="btn btn-primary" value="Save" (click)="submitMethod()" [disabled]="taskForm.invalid">
+        <input type="button" class="btn btn-primary" value="Reset" (click)="resetForm()">
+      </div>
+    </div>
+
+
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User List</h3>
+      </div>
+
+      <div class="panel-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th style="width:120px;">Action</th>
+              <th>Task Number</th>
+              <th>PBI Number</th>
+              <th>Issue Number</th>
+              <th>taskDescription</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of taskList">
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-sm btn-primary" (click)="editButtonClick(item.id)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteButtonClick(item.id)">Delete</button>
+                </div>
+              </td>
+              <td> {{ item.taskNumber }} </td>
+              <td> {{ item.pbiId }} </td>
+              <td> {{ item.issueId }} </td>
+              <td> {{ item.taskDescription }} </td>
+            </tr>
+            <tr>
+              <td colspan="5" *ngIf="taskList?.length === 0">
+                <div class="alert alert-danger" role="alert">No Records to display.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>

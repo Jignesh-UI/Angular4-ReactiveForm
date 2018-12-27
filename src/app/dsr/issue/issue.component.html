@@ -1,0 +1,74 @@
+<div class="col-sm-12">
+
+  <div class="form-group">
+    <input type="button" class="btn btn-primary" value="{{showFormButtonText}}" (click)="showAddForm()">
+  </div>
+
+  <form [formGroup]="issueForm" class=" form-horizontal">
+
+    <div class="panel panel-primary" *ngIf="showForm">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter New Issue Details</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label for="issueNumber" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.issueNumber}">Issue
+            Number</label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.issueNumber}">
+            <input type="text" id="issueNumber" class="form-control" formControlName="issueNumber" placeholder="Issue Number" />
+            <span class="help-block" *ngIf="formErrors.issueNumber"> {{formErrors.issueNumber}} </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="issueDescription" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.issueDescription}">Issue
+            Description</label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.issueDescription}">
+            <textarea id="issueDescription" class="form-control" formControlName="issueDescription" placeholder="Enter Issue Description here......"> </textarea>
+            <span class="help-block" *ngIf="formErrors.issueDescription"> {{formErrors.issueDescription}} </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-footer">
+        <input type="button" class="btn btn-primary" value="Save" (click)="submitMethod()" [disabled]="issueForm.invalid">
+        <input type="button" class="btn btn-primary" value="Reset" (click)="resetForm()">
+      </div>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Issue's</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th style="width:120px;">Action</th>
+              <th>Issue</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of issueList">
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-sm btn-primary" (click)="editButtonClick(item.id)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteButtonClick(item.id)">Delete</button>
+                </div>
+              </td>
+              <td>{{item.issueNumber}}</td>
+              <td>{{item.issueDescription}}</td>
+            </tr>
+            <tr>
+              <td colspan="3" *ngIf="issueList?.length === 0">
+                <div class="alert alert-danger" role="alert">No Records to display.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>

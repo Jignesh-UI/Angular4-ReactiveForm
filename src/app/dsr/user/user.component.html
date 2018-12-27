@@ -1,0 +1,100 @@
+<div class="col-sm-12">
+
+  <div class="form-group">
+    <input type="button" class="btn btn-primary" value="{{showFormButtonText}}" (click)="showAddForm()">
+  </div>
+
+
+  <form class="form-horizontal" [formGroup]="userForm">
+    <div class="panel panel-primary" *ngIf="showForm">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter New User Details</h3>
+      </div>
+
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label for="userName" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.userName}">User
+            Name</label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.userName}">
+            <input type="text" id="userName" class="form-control" formControlName="userName" placeholder="User Name" />
+            <span class="help-block" *ngIf="formErrors.userName"> {{formErrors.userName}} </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="teamId" class="col-sm-2 control-label" [ngClass]="{'has-error' : formErrors.teamId}">Team
+            Name</label>
+          <div class="col-sm-10" [ngClass]="{'has-error' : formErrors.teamId}">
+            <select name="teamId" id="teamId" class="form-control" formControlName="teamId">
+              <option *ngFor="let item of teamName" value="{{item.id}}"> {{item.teamName}} </option>
+            </select>
+            <span class="help-block" *ngIf="formErrors.teamId"> {{formErrors.teamId}} </span>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="comments" class="col-sm-2 control-label" [ngClass]="{'has-error': formErrors.comments}">Comments</label>
+          <div class="col-sm-10" [ngClass]="{'has-error': formErrors.comments}">
+            <textarea id="comments" class="form-control" formControlName="comments" placeholder="Enter comments here......"> </textarea>
+            <span class="help-block" *ngIf="formErrors.comments"> {{formErrors.comments}} </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-footer">
+        <input type="button" class="btn btn-primary" value="Save" (click)="submitMethod()" [disabled]="userForm.invalid">
+        <input type="button" class="btn btn-primary" value="Reset" (click)="resetForm()">
+      </div>
+    </div>
+
+
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User List</h3>
+      </div>
+
+      <div class="panel-body">
+
+
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th style="width:120px;">Action</th>
+              <th>User</th>
+              <th>Team</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of userList">
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-sm btn-primary" (click)="editButtonClick(item.id)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteButtonClick(item.id)">Delete</button>
+                </div>
+              </td>
+              <td> {{ item.userName }} </td>
+              <td> {{ item.teamId }} </td>
+              <td> {{ item.comments }} </td>
+            </tr>
+            <tr>
+              <td colspan="4" *ngIf="userList?.length === 0">
+                <div class="alert alert-danger" role="alert">No Records to display.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+
+
+  </form>
+</div>
